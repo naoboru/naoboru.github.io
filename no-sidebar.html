@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>No Sidebar - Landed by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Naomi Boruchowicz</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="#">Layouts</a>
+								<ul>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">Heart Disease</a></li>
+									<li>
+										<a href="#">Submenu</a>
+										<ul>
+											<li><a href="#">Option 1</a></li>
+											<li><a href="#">Option 2</a></li>
+											<li><a href="#">Option 3</a></li>
+											<li><a href="#">Option 4</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a href="elements.html">Elements</a></li>
+							<li><a href="#" class="button primary">Sign Up</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Heart Disease Indicator</h2>
+							<p>An Analysis of Risk Factors and Machine Learning Techniques</p>
+						</header>
+
+						<!-- Content -->
+							<section id="content">
+								<h3>Project Overview:</h3>
+								<p>In this project, I delved into the realm of health analytics, specifically focusing on heart disease prediction. Utilizing the comprehensive Heart Disease Health Indicators Dataset from Kaggle, the project aims to uncover the intricate connections between various health factors and the likelihood of heart disease.</p>
+								<h3>Objectives:</h3>
+								<p>The primary goal is to predict heart disease occurrences by analyzing an array of health indicators. This involves a detailed exploratory data analysis to identify key patterns and relationships within the data.</p>
+								<h3>Methodology:</h3>
+								<p>To achieve our objectives, the project employs Python's robust data science libraries. Initial steps include rigorous data cleaning and preprocessing to ensure the integrity and accuracy of the analysis. The exploratory phase examines various health indicators, seeking patterns and notable correlations with heart disease cases.</p>
+								<p>Advanced machine learning techniques, including Random Forest and K-Nearest Neighbors (KNN), form the core of our predictive analysis. These methods allow for the development of models capable of predicting heart disease based on the identified risk factors.</p>
+								<h3>Key Findings and Insights:</h3>
+								<p>Visualizations</p>
+								<ul>
+									<a href="#" class="image"><img src="heatmap.png" alt="" /></a>
+									<p>The analysis reveals that several factors are strongly correlated with heart disease/attack, including general health, high blood pressure, age, and physical health. These findings suggest that maintaining good physical health and managing blood pressure and cholesterol levels can help reduce the risk of heart disease/attack. While smoking has a lower correlation with heart disease/attack compared to other factors, it is still a well-established risk factor for cardiovascular disease. Research has shown that smokers have a higher risk of heart disease/attack compared to non-smokers, and quitting smoking can help reduce this risk. Further research could investigate the differences in risk between smokers and non-smokers and explore the potential benefits of different smoking cessation strategies. </p>
+									</ul>
+								<p>Logistic Regression on the Oversampled Dataset</p>
+								<ul>
+									<a href="#" class="image "><img src="accuracy.png" alt=" " /></a>
+								<p>So with minimal negative effect on accuracy, this relatively simple sampling technique almost doubled our f1 score, from about 23% to about 42%. Using the same oversampled dataset, we will next see if ensemble modeling methods provide similar improvements.</p>
+								</ul>
+								<h3>SVM using Tuned Class Weights and the Original Dataset</h3>
+								<ul>
+									<p>Conveniently, Scikit-learn's support vector machine (SVM) class has a tunable parameter called "class weight" which will correct for imbalanced class distribution. Using SVM we can then account for our imbalanced data without special sampling techniques. In order to tune correctly, we will first train multiple models with varying class weights on small subsets of the data (due to long SVM training runtimes).</p>
+									<a href="#" class="image "><img src="class weight.png" alt=" " /></a>
+									<p>From the above graph, it seems that 4 is the optimal class weight for the sparse class. We will use it as the parameter for our final SVM model as we determine the overall f1 score for SVM:</p>
+								</ul>
+									<h3>Challenges:</h3>
+								<ul>
+									<li>It seems that there was not a good enough correlation between features and targets to achieve satisfactory accuracy/f1 score with the models used. In the end it was not possible to find a model that scored high in accuracy and f1 score. The methods used seemed to have an upper limit on accuracy of about 90%. Any increase in model sophistication improved f1 score, but lowered accuracy due to false positive rate.</li>
+									<li>It was cumbersome to determine parameters/hyperparameters for sampling methods and models to maximize f1 score. Sampling and modeling techniques could both be varied with multiple input parameters, meaning many possible input combinations (i.e. number of undersampled subsets to split into, choice of classification models in stacking ensemble, etc.). This often meant burdensome trials to determine optimized parameters empirically.</li>
+									<li>The dataset did not always represent information in an intuitive way. This included columns such as general health rating, in which a higher value initially signaled poor health and a lower value signaled better health. This initial representation was confusing and counter-intuitive. Only after reading source documents did it become clear what each column represented, and we were then able to make adjustments and increase the readability of the dataset.</li>
+								</ul>
+								<h3>Potential Next Steps</h3>
+								<ul>
+									<li>Curate new features: The Behavioral Risk Factor Surveillance System analysis of which this dataset is a subset contains dozens of features that were not assessed in this project. Moving forward, it would be interesting to see if any of these features are more correlated to heart disease/attack, and could be used to build better predictive models.</li>
+									<li>External validation: Validate the model using external datasets, if available, to assess its generalization capabilities and ensure it works well on diverse populations and scenarios.</li>
+									<li>Utilize neural networks: Even with creative sampling techniques and ensemble methods, the models used in this project were not sophisticated enough to produce satisfactory results. It might instead be worthwhile to create and train a deep neural network to better predict heart disease/attack given the above feature set.</li>
+									<li>Incorporate domain knowledge: Consult with medical experts and incorporate domain knowledge to better understand the features that may influence heart disease/attack and to help inform the feature selection process.</li>
+								</ul>
+								<h3>Conclusion:</h3>
+								<p>The project not only highlights my proficiency in data analysis and machine learning but also underscores the potential of these technologies in impacting healthcare outcomes. Through this study, we gain valuable insights into the indicators and risks associated with heart disease, paving the way for more informed healthcare strategies.</p>
+							</section>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
